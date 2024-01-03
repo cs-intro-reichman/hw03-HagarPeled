@@ -10,8 +10,24 @@ public class UniqueChars {
      * except that all the duplicate characters are removed,
      * unless they are space characters.
      */
-    public static String uniqueChars(String s) {
-        // Replace the following statement with your code
-        return null;
-    }
-}
+    public static String uniqueChars(String str) {
+       String newString= " ";
+       int i= 0;
+       
+       while(i<str.length()) {
+        char currentChar= str.charAt(i);
+
+    if (currentChar != ' ' && newString.indexOf(String.valueOf(currentChar)) == -1) {
+          newString += currentChar;
+     } else if (currentChar == ' ') {
+        newString+=' ';
+     }
+     
+     i++;
+ }
+
+        return newString.trim();
+    } 
+ }   
+    
+
