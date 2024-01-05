@@ -43,7 +43,7 @@ public class LoanCalc {
     double g = loan / n;
     double f = endBalance(loan, rate, n, g);
 
-    while (Math.abs(f) >= epsilon) {
+    while (f >= epsilon || f <= -epsilon) {
         g += epsilon;  // Increase the guess
         f = endBalance(loan, rate, n, g);  // Recalculate the function value
         iterationCounter++;
