@@ -3,7 +3,7 @@
 */
 public class LoanCalc {
 	
-	static double epsilon = 0.1;  // The computation tolerance (estimation error)
+	static double epsilon = 0.001;  // The computation tolerance (estimation error)
 	static int iterationCounter;    // Monitors the efficiency of the calculation
 	
     /** 
@@ -43,7 +43,7 @@ public class LoanCalc {
     double g = loan / n;
     double f = endBalance(loan, rate, n, g);
 
-    while (f >= epsilon || f <= -epsilon) {
+    while (Math.abs(f) >= epsilon) {
         g += epsilon;  // Increase the guess
         f = endBalance(loan, rate, n, g);  // Recalculate the function value
         iterationCounter++;
