@@ -42,9 +42,9 @@ public class LoanCalc {
     iterationCounter = 0;     
     double g = loan / n;
     double f = endBalance(loan, rate, n, g);
-
+   double bruteForceEpsilon = 0.0001;
     while (Math.abs(f) >= epsilon) {
-        g += epsilon;  // Increase the guess
+        g += bruteForceEpsilon;  // Increase the guess
         f = endBalance(loan, rate, n, g);  // Recalculate the function value
         iterationCounter++;
     }
