@@ -6,9 +6,14 @@ public class Calendar {
 
     public static void main(String args[]) {
 
-        year = Integer.parseInt(args[0]);
+        int givenYear = Integer.parseInt(args[0]);
 
-        while (year <= Integer.parseInt(args[0]) && month <= 12) {
+        while (year < givenYear) {
+        	advance();
+        }
+
+
+        while (year <= givenYear && month <= 12) {
             if (dayOfWeek == 1) {
                 System.out.println(dayOfMonth + "/" + month + "/" + year + " Sunday");
             } else {

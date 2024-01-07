@@ -3,7 +3,7 @@
 */
 public class LoanCalc {
 	
-	static double epsilon = 0.1;  // The computation tolerance (estimation error)
+	static double epsilon = 0.01;  // The computation tolerance (estimation error)
 	static int iterationCounter;    // Monitors the efficiency of the calculation
 	
     /** 
@@ -41,11 +41,8 @@ public class LoanCalc {
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) { 
     iterationCounter = 0;     
     double g = loan / n;
-    double f = endBalance(loan, rate, n, g);
-   double bruteForceEpsilon = 0.0001;
-    while (Math.abs(f) >= epsilon) {
-        g += bruteForceEpsilon;  // Increase the guess
-        f = endBalance(loan, rate, n, g);  // Recalculate the function value
+    while (endBalance(loan, rate, n, g) > epsilon) {
+        g += epsilon;  // Increase the guess
         iterationCounter++;
     }
 
@@ -63,20 +60,20 @@ public class LoanCalc {
     	iterationCounter = 0;
     	double L = 0.0;
     	double H = loan;
-    	double g = (L + H)/n;
+    	double g = (L + H)/2;
         double fL = endBalance(loan, rate, n, L);
         double fH = endBalance(loan, rate, n, H);
         double fg = endBalance(loan, rate, n, g);
 
         while ((H-L) > epsilon) {
         	if ((fg * fL) > 0) {
-        		H = g;
-        		fH = fg;
-        }   else { 
         		L = g;
         		fL = fg;
+        }   else { 
+        		H = g;
+        		fH = fg;
         }		
-        	g += epsilon;
+        	g = (L + H)/2;
         	fg = endBalance(loan, rate, n, g);
         	iterationCounter++;
      
